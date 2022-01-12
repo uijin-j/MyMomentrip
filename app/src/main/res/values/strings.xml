@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyMomentrip</string>
+    <string name="ask_forget_password"><u>혹시 비밀번호를 잊으셨나요?</u></string>
+    <string name="ask_for_login"><u>로그인 하러 가기!</u></string>
+</resources>

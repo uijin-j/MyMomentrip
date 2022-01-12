@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_more"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_sample"
+        android:title="추가 메뉴"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/add"
+        android:orderInCategory="101"
+        android:icon="@drawable/ic_sample"
+        android:title="모멘트 추가"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/album_select"
+        android:orderInCategory="102"
+        android:title="여행집 설정"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/save"
+        android:orderInCategory="103"
+        android:title="저장"
+        app:showAsAction="always" />
+
+</menu>

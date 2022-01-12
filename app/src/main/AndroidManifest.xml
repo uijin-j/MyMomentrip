@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.uijin.momentrip">
+
+    <!-- 네트워킹을 위한 퍼미션 설정 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyMomentrip"
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true" > //  Retrofit(Http주소에 접근)
+        <activity
+            android:name=".ui.view.LoginActivity1"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.view.LoginActivity2" />
+        <activity android:name=".ui.view.SignupActivity1" />
+        <activity android:name=".ui.view.SignupActivity2" />
+        <activity android:name=".ui.view.SignupActivity3" />
+
+        <activity android:name=".ui.view.MainActivity" />
+        <activity android:name=".ui.view.Tab3Activity" android:theme="@style/Transparent"/>
+        <activity android:name=".ui.view.MakeMomentActivity" android:theme="@style/Theme.AppCompat.Light" />
+        <activity android:name=".ui.view.MakeBookActivity" android:theme="@style/Theme.AppCompat.Light" />
+    </application>
+
+</manifest>
