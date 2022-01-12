@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="64dp"
+    android:paddingTop="30dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="추천 검색어"
+        android:textStyle="bold"
+        android:layout_marginLeft="24dp"
+        android:textColor="@color/text1"
+        android:textSize="16sp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="40dp">
+
+        <TextView
+            android:id="@+id/keyword1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_lightgrey"
+            android:text="부산여행"
+            android:textColor="#191919" />
+        <TextView
+            android:id="@+id/keyword2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_lightgrey"
+            android:text="제주여행"
+            android:layout_marginLeft="8dp"
+            android:textColor="#191919" />
+        <TextView
+            android:id="@+id/keyword3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/border_lightgrey"
+            android:text="여수여행"
+            android:textColor="#191919" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp">
+
+        <TextView
+            android:id="@+id/keyword4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_lightgrey"
+            android:text="강원도여행"
+            android:textColor="#191919" />
+        <TextView
+            android:id="@+id/keyword5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_lightgrey"
+            android:text="나홀로여행"
+            android:layout_marginLeft="8dp"
+            android:textColor="#191919" />
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/keyword6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_lightgrey"
+                android:text="바다"
+                android:textColor="#191919" />
+            <TextView
+                android:id="@+id/keyword7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_lightgrey"
+                android:text="캠핑"
+                android:layout_marginLeft="8dp"
+                android:textColor="#191919" />
+            <TextView
+                android:id="@+id/keyword8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_lightgrey"
+                android:text="당일치기"
+                android:layout_marginLeft="8dp"
+                android:textColor="#191919" />
+            <TextView
+                android:id="@+id/keyword9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_lightgrey"
+                android:text="효도여행"
+                android:layout_marginLeft="8dp"
+                android:textColor="#191919" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

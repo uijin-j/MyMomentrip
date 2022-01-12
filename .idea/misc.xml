@@ -3,12 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable-v24/border_lightgrey.xml" value="0.23796296296296296" />
+        <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable-v24/bottom_sheet_background.xml" value="0.20555555555555555" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable-v24/button_blue.xml" value="0.2518518518518518" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable-v24/button_darkgrey.xml" value="0.2651282051282051" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable-v24/button_lightgrey.xml" value="0.2651282051282051" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable-v24/button_white.xml" value="0.26927083333333335" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable-v24/inputborder.xml" value="0.2518518518518518" />
+        <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable-v24/round_corner.xml" value="0.18177083333333333" />
+        <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable-v24/selected_sort.xml" value="0.23796296296296296" />
+        <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable-v24/trip_custom_btn.xml" value="0.18177083333333333" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable/ic_exchange.xml" value="0.21354166666666666" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable/ic_home.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable/ic_images.xml" value="0.26979166666666665" />
@@ -19,6 +24,7 @@
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable/ic_tab4_album.xml" value="0.2651282051282051" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable/ic_tab5_user.xml" value="0.2651282051282051" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable/ic_user.xml" value="0.26979166666666665" />
+        <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable/selected_sort_gray.xml" value="0.20555555555555555" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable/switch_left.xml" value="0.18981481481481483" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable/switch_right.xml" value="0.19814814814814816" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/drawable/test.xml" value="0.19814814814814816" />
@@ -41,7 +47,8 @@
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/fragment_make_moment.xml" value="0.23645833333333333" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/fragment_moment.xml" value="0.176" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/fragment_photobook.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/fragment_search.xml" value="0.12462006079027356" />
+        <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/fragment_search.xml" value="0.176" />
+        <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/fragment_search_recommendation.xml" value="0.264" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/fragment_user.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/home_fragment.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/item_book.xml" value="0.25364583333333335" />
@@ -52,6 +59,8 @@
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/login2_activity.xml" value="0.23958333333333334" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/moment_action_bar.xml" value="0.253125" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/moment_fragment.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/search_bottom_sheet.xml" value="0.2515625" />
+        <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/search_bottom_sheet1.xml" value="0.2140625" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/search_fragment.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/signup1_activity.xml" value="0.264" />
         <entry key="..\:/Users/Public/Documents/Android/MyMomentrip/app/src/main/res/layout/signup2_activity.xml" value="0.4" />

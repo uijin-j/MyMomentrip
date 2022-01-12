@@ -14,12 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.uijin.momentrip.R;
 import com.uijin.momentrip.data.model.LoginRequest;
 import com.uijin.momentrip.data.model.LoginResponse;
-import com.uijin.momentrip.data.model.SignupResponse;
-import com.uijin.momentrip.data.repository.remote.Repository;
+import com.uijin.momentrip.data.repository.remote.RemoteDataSource;
 
 public class LoginActivity2 extends AppCompatActivity {
     private SharedPreferences preferences; // 유저 정보를 위한 SharedPreferences
-    Repository repository; // 네트워크 요청을 위한 객체
+    RemoteDataSource repository; // 네트워크 요청을 위한 객체
 
     EditText emailInput;
     EditText passwordInput;
@@ -31,7 +30,7 @@ public class LoginActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_login2);
 
         preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
-        repository = new Repository();
+        repository = new RemoteDataSource();
 
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
@@ -45,7 +44,7 @@ public class LoginActivity2 extends AppCompatActivity {
             public void onClick(View v) {
                 // 서버에 로그인 요청
                 LoginRequest request = new LoginRequest(emailInput.getText().toString(), passwordInput.getText().toString());
-                repository.login(request, new Repository.GetDataCallback<LoginResponse>() {
+                repository.login(request, new RemoteDataSource.GetDataCallback<LoginResponse>() {
                     @Override
                     public void onSuccess(LoginResponse data) {
                         SharedPreferences.Editor editor = preferences.edit(); // Editor를 preferences에 쓰겠다고 연결

@@ -1,5 +1,6 @@
 package com.uijin.momentrip.data.repository.remote;
 
+import com.uijin.momentrip.data.model.CreateBookResponse;
 import com.uijin.momentrip.data.model.CreateMomentRequest;
 import com.uijin.momentrip.data.model.CreateMomentResponse;
 import com.uijin.momentrip.data.model.GetBookListResponse;
@@ -28,7 +29,7 @@ public class RemoteDataSource { // API를 통해 데이터 소스를 가져오�
     private MomentripService service = retrofit.create(MomentripService.class);
 
     /** 회원가입 */
-    public void signup(SignupRequest request, Repository.GetDataCallback<SignupResponse> callback) {
+    public void signup(SignupRequest request, RemoteDataSource.GetDataCallback<SignupResponse> callback) {
         // 인터페이스 구현
         service.signup(request).enqueue(new Callback<SignupResponse>() {
             @Override
@@ -45,7 +46,7 @@ public class RemoteDataSource { // API를 통해 데이터 소스를 가져오�
     }
 
     /** 로그인 */
-    public void login(LoginRequest request, Repository.GetDataCallback<LoginResponse> callback) {
+    public void login(LoginRequest request, RemoteDataSource.GetDataCallback<LoginResponse> callback) {
         // 인터페이스 구현
         service.login(request).enqueue(new Callback<LoginResponse>() {
             @Override
@@ -58,7 +59,7 @@ public class RemoteDataSource { // API를 통해 데이터 소스를 가져오�
     }
 
     /** GET User By id */
-    public void getUserById(String userId, Repository.GetDataCallback<SignupResponse> callback) {
+    public void getUserById(String userId, RemoteDataSource.GetDataCallback<SignupResponse> callback) {
         // 인터페이스 구현
         service.getUserById(userId).enqueue(new Callback<SignupResponse>() {
             @Override
@@ -71,8 +72,21 @@ public class RemoteDataSource { // API를 통해 데이터 소스를 가져오�
     }
 
     /** Book */
+    /* Post Book */
+    public void createBook(MultipartBody.Part file , Map<String, RequestBody> request, RemoteDataSource.GetDataCallback<CreateBookResponse> callback) {
+        // 인터페이스 구현
+        service.createBook(file, request).enqueue(new Callback<CreateBookResponse>() {
+            @Override
+            public void onResponse(Call<CreateBookResponse> call, Response<CreateBookResponse> response) {
+                if (response.isSuccessful()) { callback.onSuccess(response.body()); }
+            }
+            @Override
+            public void onFailure(Call<CreateBookResponse> call, Throwable t) { callback.onFailure(t); }
+        });
+    }
+
     /* GET Book List 모든 유저 */
-    public void getAllBooks(Repository.GetDataCallback<GetBookListResponse> callback) {
+    public void getAllBooks(RemoteDataSource.GetDataCallback<GetBookListResponse> callback) {
         // 인터페이스 구현
         service.getAllBooks().enqueue(new Callback<GetBookListResponse>() {
             @Override
@@ -85,7 +99,7 @@ public class RemoteDataSource { // API를 통해 데이터 소스를 가져오�
     }
 
     /* GET Book By id */
-    public void getBookById(String book_id, Repository.GetDataCallback<GetBookResponse> callback) {
+    public void getBookById(String book_id, RemoteDataSource.GetDataCallback<GetBookResponse> callback) {
         // 인터페이스 구현
         service.getBookById(book_id).enqueue(new Callback<GetBookResponse>() {
             @Override
@@ -98,8 +112,8 @@ public class RemoteDataSource { // API를 통해 데이터 소스를 가져오�
     }
 
     /** Moment */
-    /** Post Moment */
-    public void createMoment(MultipartBody.Part file , Map<String, RequestBody> request, Repository.GetDataCallback<CreateMomentResponse> callback) {
+    /* Post Moment */
+    public void createMoment(MultipartBody.Part file , Map<String, RequestBody> request, RemoteDataSource.GetDataCallback<CreateMomentResponse> callback) {
         // 인터페이스 구현
         service.createMoment(file, request).enqueue(new Callback<CreateMomentResponse>() {
             @Override
@@ -109,5 +123,11 @@ public class RemoteDataSource { // API를 통해 데이터 소스를 가져오�
             @Override
             public void onFailure(Call<CreateMomentResponse> call, Throwable t) { callback.onFailure(t); }
         });
+    }
+
+    /** 응답 콜백 */
+    public interface GetDataCallback<T> {
+        void onSuccess(T data);
+        void onFailure(Throwable throwable);
     }
 }

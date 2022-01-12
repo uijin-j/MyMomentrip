@@ -1,5 +1,6 @@
 package com.uijin.momentrip.ui.view;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,25 +26,37 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.uijin.momentrip.R;
-import com.uijin.momentrip.data.repository.remote.Repository;
+import com.uijin.momentrip.data.model.CreateBookResponse;
+import com.uijin.momentrip.data.repository.remote.RemoteDataSource;
 
+import java.io.File;
 import java.io.InputStream;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 @RequiresApi(api = Build.VERSION_CODES.O)
 public class MakeBookActivity extends AppCompatActivity {
     private static final int OPEN_GALLERY = 1;
-    Repository repository; // 네트워크 요청을 위한 객체
+    RemoteDataSource repository; // 네트워크 요청을 위한 객체
 
     String[] categorys = {"여행집","제주도", "강릉", "나홀로 여행", "효도여행", "당일치기"};
 
     ImageView mainTmage;
+    EditText titleInput;
     TextView categoryInput;
     TextView startDateInput;
     TextView endDateInput;
+    Button publicButton;
+    Button nonpublicButton;
+    Button saveButton;
 
-    ImageView imageView;
     private Uri imageUrl;
+    boolean bookPublic = true;
 
     LocalDate now = LocalDate.now();
     int[] startDate = new int[3];
@@ -55,10 +69,17 @@ public class MakeBookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_album);
 
+        repository = new RemoteDataSource();
+
         mainTmage = findViewById(R.id.main_image);
+        titleInput = findViewById(R.id.titleInput);
         categoryInput = findViewById(R.id.categoryInput);
         startDateInput = findViewById(R.id.startDateInput);
         endDateInput = findViewById(R.id.endDateInput);
+
+        publicButton = findViewById(R.id.public_button);
+        nonpublicButton = findViewById(R.id.nonpublic_button);
+        saveButton = findViewById(R.id.saveButton);
 
         setActionBar();
 
@@ -96,6 +117,64 @@ public class MakeBookActivity extends AppCompatActivity {
                 showDatePickerDialog(1);
             }
         });
+
+        publicButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View v) {
+                bookPublic = true;
+                publicButton.setTextColor(getResources().getColor(R.color.momentrip_main));
+                nonpublicButton.setTextColor(getResources().getColor(R.color.line1));
+            }
+        });
+
+        nonpublicButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View v) {
+                bookPublic = false;
+                publicButton.setTextColor(getResources().getColor(R.color.line1));
+                nonpublicButton.setTextColor(getResources().getColor(R.color.momentrip_main));
+            }
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), titleInput.getText().toString() + ", "+ String.valueOf(isPublic()), Toast.LENGTH_SHORT).show();
+
+                File file = new File(getPathFromUri(imageUrl));
+
+                RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                MultipartBody.Part uploadFile = MultipartBody.Part.createFormData("book_img", file.getName(), requestFile);
+
+                Map<String, RequestBody> request = new HashMap<>();
+                RequestBody bookTitle = RequestBody.create(MediaType.parse("text/plain"), titleInput.getText().toString());
+                RequestBody bookPublic = RequestBody.create(MediaType.parse("text/plain"), String.valueOf(isPublic()));
+                RequestBody UserId = RequestBody.create(MediaType.parse("text/plain"), "1"); // 임시
+
+                request.put("book_title", bookTitle);
+                request.put("UserId", UserId);
+                request.put("book_public", bookPublic);
+
+                repository.createBook(uploadFile, request, new RemoteDataSource.GetDataCallback<CreateBookResponse>() {
+                    @Override
+                    public void onSuccess(CreateBookResponse data) {
+                        Toast.makeText(getApplicationContext(),"앨범 만들기 성공!" + data.getBook().getBook_img(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onFailure(Throwable throwable) {
+                        Toast.makeText(getApplicationContext(),"앨범 만들기 실패!" + throwable.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
+    }
+
+    private boolean isPublic() {
+        return bookPublic;
     }
 
     private void setActionBar() {

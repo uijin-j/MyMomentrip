@@ -14,11 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.uijin.momentrip.R;
 import com.uijin.momentrip.data.model.SignupRequest;
 import com.uijin.momentrip.data.model.SignupResponse;
-import com.uijin.momentrip.data.repository.remote.Repository;
+import com.uijin.momentrip.data.repository.remote.RemoteDataSource;
 
 public class SignupActivity2 extends AppCompatActivity{
     private SharedPreferences preferences; // 유저 정보를 위한 SharedPreferences
-    Repository repository; // 네트워크 요청을 위한 객체
+    RemoteDataSource repository; // 네트워크 요청을 위한 객체
 
     EditText nameInput;
     EditText passwordInput;
@@ -30,7 +30,7 @@ public class SignupActivity2 extends AppCompatActivity{
         setContentView(R.layout.activity_signup2);
 
         preferences = getSharedPreferences("UserInfo", MODE_PRIVATE);
-        repository = new Repository();
+        repository = new RemoteDataSource();
 
         nameInput = findViewById(R.id.signupName);
         passwordInput = findViewById(R.id.editText);
@@ -41,7 +41,7 @@ public class SignupActivity2 extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 SignupRequest request = new SignupRequest(preferences.getString("email",""), passwordInput.getText().toString() , nameInput.getText().toString(), nameInput.getText().toString(), null,null);
-                repository.signup(request, new Repository.GetDataCallback<SignupResponse>() {
+                repository.signup(request, new RemoteDataSource.GetDataCallback<SignupResponse>() {
                     @Override
                     public void onSuccess(SignupResponse response) {
                         Toast.makeText(getApplicationContext(),"회원가입 완료! : " + response.getUser().getName(), Toast.LENGTH_LONG).show();

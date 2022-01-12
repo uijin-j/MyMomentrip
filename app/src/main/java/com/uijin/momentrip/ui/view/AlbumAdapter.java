@@ -106,7 +106,10 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ViewHolder>
 //            }
 
             // Glide로 이미지 표시하기
-            String imageUrl = "https://pbs.twimg.com/media/EIxe6IAVAAAKLu-.jpg";
+
+//          String imageUrl = "https://pbs.twimg.com/media/EIxe6IAVAAAKLu-.jpg";
+            String imageUrl = item.getBook_img();
+            imageUrl = (imageUrl==null)? "https://pbs.twimg.com/media/EIxe6IAVAAAKLu-.jpg":item.getBook_img();
             Glide.with(imageView.getContext()).load(imageUrl).into(imageView);
         }
     }

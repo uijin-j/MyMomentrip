@@ -41,6 +41,12 @@ public class Tab3Activity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
+
+    @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {

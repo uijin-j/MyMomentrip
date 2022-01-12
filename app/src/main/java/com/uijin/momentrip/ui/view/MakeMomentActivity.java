@@ -17,17 +17,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.room.util.FileUtil;
 import androidx.viewpager.widget.ViewPager;
 
-import com.android.volley.toolbox.Volley;
 import com.uijin.momentrip.R;
-import com.uijin.momentrip.data.model.CreateMomentRequest;
 import com.uijin.momentrip.data.model.CreateMomentResponse;
-import com.uijin.momentrip.data.model.LoginRequest;
-import com.uijin.momentrip.data.repository.remote.Repository;
-import com.uijin.momentrip.ui.view.MomentActionBar;
-import com.uijin.momentrip.ui.view.MomentFragment;
+import com.uijin.momentrip.data.repository.remote.RemoteDataSource;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -39,7 +33,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class MakeMomentActivity extends AppCompatActivity {
-    Repository repository; // 네트워크 요청을 위한 객체
+    RemoteDataSource repository; // 네트워크 요청을 위한 객체
 
     ViewPager pager;
     MyPagerAdapter adapter;
@@ -56,7 +50,7 @@ public class MakeMomentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_moment);
 
-        repository = new Repository();
+        repository = new RemoteDataSource();
 
         moment_number = findViewById(R.id.moment_number);
         miniImage = findViewById(R.id.miniImage);
@@ -145,7 +139,7 @@ public class MakeMomentActivity extends AppCompatActivity {
                 request.put("UserId", UserId);
                 request.put("BookId", BookId);
 
-                repository.createMoment(uploadFile, request, new Repository.GetDataCallback<CreateMomentResponse>() {
+                repository.createMoment(uploadFile, request, new RemoteDataSource.GetDataCallback<CreateMomentResponse>() {
                     @Override
                     public void onSuccess(CreateMomentResponse data) {
                         Toast.makeText(getApplicationContext(),"모멘트 만들기 성공!", Toast.LENGTH_SHORT).show();

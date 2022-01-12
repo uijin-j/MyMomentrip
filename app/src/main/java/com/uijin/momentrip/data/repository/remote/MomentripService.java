@@ -1,6 +1,7 @@
 package com.uijin.momentrip.data.repository.remote;
 
 import com.uijin.momentrip.data.model.CreateBookRequest;
+import com.uijin.momentrip.data.model.CreateBookResponse;
 import com.uijin.momentrip.data.model.CreateMomentRequest;
 import com.uijin.momentrip.data.model.CreateMomentResponse;
 import com.uijin.momentrip.data.model.GetBookListResponse;
@@ -50,9 +51,10 @@ public interface MomentripService { // 네트워크 통신(Retrofit2)를 위한 
     /**
      * Book
      */
+
     @Multipart
     @POST("book")
-    Call<GetBookResponse> createBook(@Part MultipartBody.Part file, @PartMap Map<String, RequestBody> map);
+    Call<CreateBookResponse> createBook(@Part MultipartBody.Part file, @PartMap Map<String, RequestBody> map);
 
     @GET("book")
     Call<GetBookListResponse> getAllBooks();

@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyMomentrip"
         android:usesCleartextTraffic="true"
-        android:requestLegacyExternalStorage="true" > //  Retrofit(Http주소에 접근)
+        android:requestLegacyExternalStorage="true"> //  Retrofit(Http주소에 접근)
         <activity
             android:name=".ui.view.LoginActivity1"
             android:exported="true">

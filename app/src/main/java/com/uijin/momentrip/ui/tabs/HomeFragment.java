@@ -16,7 +16,7 @@ import com.uijin.momentrip.R;
 import com.uijin.momentrip.data.model.Book;
 import com.uijin.momentrip.data.model.GetBookListResponse;
 import com.uijin.momentrip.data.model.Moment;
-import com.uijin.momentrip.data.repository.remote.Repository;
+import com.uijin.momentrip.data.repository.remote.RemoteDataSource;
 import com.uijin.momentrip.ui.view.AlbumAdapter;
 import com.uijin.momentrip.ui.view.MomentAdapter;
 import com.uijin.momentrip.ui.view.OnAlbumItemClickListener;
@@ -26,7 +26,7 @@ import java.util.List;
 
 // 첫번째 탭(홈)을 위한 프래그먼트
 public class HomeFragment extends Fragment {
-    Repository repository; // 네트워크 요청을 위한 객체
+    RemoteDataSource repository; // 네트워크 요청을 위한 객체
 
     RecyclerView bestAlbumRecyclerView;
     AlbumAdapter bestAlbumAdapter;
@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
 
-        repository = new Repository();
+        repository = new RemoteDataSource();
 
         initUI(rootView);
 
@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
         bestAlbumRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         bestAlbumAdapter = new AlbumAdapter();
-        repository.getAllBooks(new Repository.GetDataCallback<GetBookListResponse>() {
+        repository.getAllBooks(new RemoteDataSource.GetDataCallback<GetBookListResponse>() {
             @Override
             public void onSuccess(GetBookListResponse data) {
                 List<Book> books = data.getBooks();

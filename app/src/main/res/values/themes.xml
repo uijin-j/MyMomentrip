@@ -32,6 +32,15 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <!--    BottomSheetDialogFragment 모서리에 적용되는 테마-->
+    <style name="TransparentBottomSheetDialogFragment" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/TransparentBottomSheetDialogFragmentChild</item>
+    </style>
+
+    <style name="TransparentBottomSheetDialogFragmentChild" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">#00000000</item>
+    </style>
+
     <style name="AppTheme.Picker" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="android:textColorPrimary">@color/text2</item>
         <item name="android:textColorHighlight">@color/black</item>
