@@ -6,6 +6,7 @@ import com.uijin.momentrip.data.model.CreateMomentRequest;
 import com.uijin.momentrip.data.model.CreateMomentResponse;
 import com.uijin.momentrip.data.model.GetBookListResponse;
 import com.uijin.momentrip.data.model.GetBookResponse;
+import com.uijin.momentrip.data.model.GetMomentListResponse;
 import com.uijin.momentrip.data.model.LoginRequest;
 import com.uijin.momentrip.data.model.LoginResponse;
 import com.uijin.momentrip.data.model.SignupRequest;
@@ -51,7 +52,6 @@ public interface MomentripService { // 네트워크 통신(Retrofit2)를 위한 
     /**
      * Book
      */
-
     @Multipart
     @POST("book")
     Call<CreateBookResponse> createBook(@Part MultipartBody.Part file, @PartMap Map<String, RequestBody> map);
@@ -63,10 +63,10 @@ public interface MomentripService { // 네트워크 통신(Retrofit2)를 위한 
     Call<GetBookResponse> getBookById(@Path("id") String book_id);
 
     @GET("book/user/{user_id}")
-    Call<GetBookListResponse> getBookByUser(@Path("user_id") String user_id);
+    Call<GetBookListResponse> getBooksByUser(@Path("user_id") String user_id);
 
     @GET("book/search/{keyword}")
-    Call<GetBookListResponse> getBookByKeyword(@Path("keyword") String keyword);
+    Call<GetBookListResponse> getBooksByKeyword(@Path("keyword") String keyword);
 
     /**
      * Moment
@@ -74,6 +74,9 @@ public interface MomentripService { // 네트워크 통신(Retrofit2)를 위한 
     @Multipart
     @POST("moment")
     Call<CreateMomentResponse> createMoment(@Part MultipartBody.Part file, @PartMap Map<String, RequestBody> map);
+
+    @GET("moment/user/{user_id}")
+    Call<GetMomentListResponse> getMomentsByUser(@Path("user_id") String user_id);
 
     /**
      * Follow

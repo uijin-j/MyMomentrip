@@ -9,8 +9,8 @@ public class User {
     @SerializedName("email")
     private String email;
 
-    @SerializedName("nick")
-    private String nick;
+    @SerializedName("snsId")
+    private String snsId;
 
     @SerializedName("password")
     private String password;
@@ -22,10 +22,10 @@ public class User {
     private String profile_img;
 
     // Constructor
-    public User(int id, String email, String nick, String password, String name, String profile_img) {
+    public User(int id, String email, String snsId, String password, String name, String profile_img) {
         this.id = id;
         this.email = email;
-        this.nick = nick;
+        this.snsId = snsId;
         this.password = password;
         this.name = name;
         this.profile_img = profile_img;
@@ -48,12 +48,12 @@ public class User {
         this.email = email;
     }
 
-    public String getNick() {
-        return nick;
+    public String getSnsId() {
+        return snsId;
     }
 
-    public void setNick(String nick) {
-        this.nick = nick;
+    public void setSnsId(String nick) {
+        this.snsId = nick;
     }
 
     public String getPassword() {
@@ -72,11 +72,11 @@ public class User {
         this.name = name;
     }
 
-    public String getProfile_img() {
+    public String getProfileImg() {
         return profile_img;
     }
 
-    public void setProfile_img(String profile_img) {
+    public void setProfileImg(String profile_img) {
         this.profile_img = profile_img;
     }
 }

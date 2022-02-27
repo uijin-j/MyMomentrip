@@ -22,6 +22,7 @@ public class SignupActivity2 extends AppCompatActivity{
 
     EditText nameInput;
     EditText passwordInput;
+    EditText snsInput;
     Button nextButton;
 
     @Override
@@ -33,6 +34,7 @@ public class SignupActivity2 extends AppCompatActivity{
         repository = new RemoteDataSource();
 
         nameInput = findViewById(R.id.signupName);
+        snsInput = findViewById(R.id.sns_id);
         passwordInput = findViewById(R.id.editText);
         nextButton = findViewById(R.id.button);
 
@@ -40,14 +42,14 @@ public class SignupActivity2 extends AppCompatActivity{
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SignupRequest request = new SignupRequest(preferences.getString("email",""), passwordInput.getText().toString() , nameInput.getText().toString(), nameInput.getText().toString(), null,null);
+                SignupRequest request = new SignupRequest(preferences.getString("email",""), passwordInput.getText().toString() , nameInput.getText().toString(), snsInput.getText().toString(),null);
                 repository.signup(request, new RemoteDataSource.GetDataCallback<SignupResponse>() {
                     @Override
                     public void onSuccess(SignupResponse response) {
                         Toast.makeText(getApplicationContext(),"회원가입 완료! : " + response.getUser().getName(), Toast.LENGTH_LONG).show();
                         SharedPreferences.Editor editor = preferences.edit(); // Editor를 preferences에 쓰겠다고 연결
                         editor.putString("id", Integer.toString(response.getUser().getId())); // putString(KEY,VALUE)
-                        editor.putString("nick", response.getUser().getNick()); // putString(KEY,VALUE)
+                        editor.putString("snsId", response.getUser().getSnsId()); // putString(KEY,VALUE)
                         editor.putString("password", response.getUser().getPassword()); // putString(KEY,VALUE)
                         editor.putString("name", response.getUser().getName()); // putString(KEY,VALUE)
                         editor.commit(); // 항상 commit & apply 를 해주어야 저장이 된다.

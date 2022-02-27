@@ -52,9 +52,6 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
                 startActivity(new Intent(getApplicationContext(), Tab3Activity.class));
             }
         });
-
-
-
     }
 
     //------------------인터페이스 구현---------------------

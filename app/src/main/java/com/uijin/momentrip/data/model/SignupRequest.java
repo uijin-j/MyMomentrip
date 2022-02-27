@@ -9,9 +9,6 @@ public class SignupRequest {
     @SerializedName("password")
     public String password;
 
-    @SerializedName("nick")
-    public String nick;
-
     @SerializedName("name")
     public String name;
 
@@ -22,10 +19,9 @@ public class SignupRequest {
     public String profile_img;
 
     // Constructor
-    public SignupRequest(String email, String password, String nick, String name, String snsId, String profile_img) {
+    public SignupRequest(String email, String password, String name, String snsId, String profile_img) {
         this.email = email;
         this.password = password;
-        this.nick = nick;
         this.name = name;
         this.snsId = snsId;
         this.profile_img = profile_img;
@@ -46,14 +42,6 @@ public class SignupRequest {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getNick() {
-        return nick;
-    }
-
-    public void setNick(String nick) {
-        this.nick = nick;
     }
 
     public String getString() {

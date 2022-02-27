@@ -32,6 +32,7 @@ import com.uijin.momentrip.data.repository.remote.RemoteDataSource;
 import java.io.File;
 import java.io.InputStream;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,6 +46,8 @@ public class MakeBookActivity extends AppCompatActivity {
     RemoteDataSource repository; // 네트워크 요청을 위한 객체
 
     String[] categorys = {"여행집","제주도", "강릉", "나홀로 여행", "효도여행", "당일치기"};
+    String area = null;
+    ArrayList<String> styles = new ArrayList<>();
 
     ImageView mainTmage;
     EditText titleInput;
@@ -53,6 +56,8 @@ public class MakeBookActivity extends AppCompatActivity {
     TextView endDateInput;
     Button publicButton;
     Button nonpublicButton;
+    TextView areaInput;
+    TextView styleInput;
     Button saveButton;
 
     private Uri imageUrl;
@@ -76,6 +81,9 @@ public class MakeBookActivity extends AppCompatActivity {
         categoryInput = findViewById(R.id.categoryInput);
         startDateInput = findViewById(R.id.startDateInput);
         endDateInput = findViewById(R.id.endDateInput);
+
+        areaInput = findViewById(R.id.area_setting);
+        styleInput = findViewById(R.id.style_setting);
 
         publicButton = findViewById(R.id.public_button);
         nonpublicButton = findViewById(R.id.nonpublic_button);
@@ -138,10 +146,54 @@ public class MakeBookActivity extends AppCompatActivity {
             }
         });
 
+        areaInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AreaBottomSheetDialog areaDialog = new AreaBottomSheetDialog(area, new AreaBottomSheetDialog.onCompleteListener() {
+                    @Override
+                    public void onComplete(String checkedArea) {
+                        area = checkedArea;
+
+                        if(area!=null) {
+                            areaInput.setText(area);
+                            areaInput.setBackgroundResource(R.drawable.selected_sort);
+                        } else {
+                            areaInput.setText("여행지역");
+                            areaInput.setBackgroundResource(R.drawable.selected_sort_gray);
+                        }
+                    }
+                });
+
+                areaDialog.show(getSupportFragmentManager(), "areaBottom");
+            }
+        });
+
+        styleInput.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                StyleBottomSheetDialog styleDialog = new StyleBottomSheetDialog(styles, new StyleBottomSheetDialog.onCompleteListener() {
+                    @Override
+                    public void onComplete(ArrayList<String> checkedStyles) {
+                        styles = (ArrayList<String>) checkedStyles.clone();
+
+                        if(styles.size()!=0) {
+                            styleInput.setText("스타일 "+String.valueOf(styles.size()));
+                            styleInput.setBackgroundResource(R.drawable.selected_sort);
+                        } else {
+                            styleInput.setText("여행스타일");
+                            styleInput.setBackgroundResource(R.drawable.selected_sort_gray);
+                        }
+                    }
+                });
+
+                styleDialog.show(getSupportFragmentManager(), "styleBottom");
+            }
+        });
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), titleInput.getText().toString() + ", "+ String.valueOf(isPublic()), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), styles.size()+ ", "+ String.valueOf(isPublic()), Toast.LENGTH_SHORT).show();
 
                 File file = new File(getPathFromUri(imageUrl));
 
@@ -260,10 +312,7 @@ public class MakeBookActivity extends AppCompatActivity {
                     in.close();
 
                     mainTmage.setImageBitmap(img);
-                }catch(Exception e)
-                {
-
-                }
+                }catch(Exception e) {}
             }
             else if(resultCode == RESULT_CANCELED)
             {

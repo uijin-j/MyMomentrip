@@ -6,7 +6,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,26 +28,19 @@ import com.uijin.momentrip.R;
 import java.util.ArrayList;
 
 //filterButton 누르면 아래에서 튀어나오는 화면
-public class MyBottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener {
+public class AreaBottomSheetDialog extends BottomSheetDialogFragment implements View.OnClickListener {
     private ViewGroup rootView;
     private Context context;
 
-    private RadioGroup radioGroupOrder, radioGroupArea1, radioGroupArea2;
+    private RadioGroup radioGroupArea1, radioGroupArea2;
 
-    private ArrayList<RadioButton> orders = new ArrayList<>();
     private ArrayList<RadioButton> areas = new ArrayList<>();
-    private ArrayList<CheckBox> styles = new ArrayList<>();
-
-    private String checkedOrder;
     private String checkedArea;
-    private ArrayList<String> checkedStyles;
 
    private onCompleteListener callback;
 
-    public MyBottomSheetDialog(String checkedOrder, String checkedArea, ArrayList<String> checkedStyles, onCompleteListener callback) {
-        this.checkedOrder = checkedOrder;
+    public AreaBottomSheetDialog(String checkedArea, onCompleteListener callback) {
         this.checkedArea = checkedArea;
-        this.checkedStyles = checkedStyles;
         this.callback=callback;
     }
 
@@ -62,23 +55,12 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = (ViewGroup) inflater.inflate(R.layout.search_bottom_sheet, container, false);
+        rootView = (ViewGroup) inflater.inflate(R.layout.bottom_sheet_area, container, false);
 
-        radioGroupOrder = rootView.findViewById(R.id.radioGroupOrder);
         radioGroupArea1 = (RadioGroup) rootView.findViewById(R.id.radioGroupArea1);
         radioGroupArea1.setOnCheckedChangeListener(listener1);
         radioGroupArea2 = (RadioGroup) rootView.findViewById(R.id.radioGroupArea2);
         radioGroupArea2.setOnCheckedChangeListener(listener2);
-
-        orders.add(rootView.findViewById(R.id.popularity_order_btn));
-        orders.add(rootView.findViewById(R.id.latest_order_btn));
-        orders.add(rootView.findViewById(R.id.nearest_order_btn));
-        for(int i=0; i<orders.size(); ++i) {
-            if(orders.get(i).getText() == checkedOrder){
-                radioGroupOrder.check(i);
-                break;
-            }
-        }
 
         areas.add(rootView.findViewById(R.id.area1));
         areas.add(rootView.findViewById(R.id.area2));
@@ -87,33 +69,14 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
         areas.add(rootView.findViewById(R.id.area5));
         areas.add(rootView.findViewById(R.id.area6));
         areas.add(rootView.findViewById(R.id.area7));
-        for(int i=0; i<areas.size(); ++i) {
-            if(areas.get(i).getText() == checkedArea){
-                if(i < 4) {
-                    radioGroupArea1.check(i);
-                } else {
-                    radioGroupArea2.check(i-4);
-                }
-                break;
-            }
-        }
 
-        styles.add(rootView.findViewById(R.id.style1));
-        styles.add(rootView.findViewById(R.id.style2));
-        styles.add(rootView.findViewById(R.id.style3));
-        styles.add(rootView.findViewById(R.id.style4));
-        styles.add(rootView.findViewById(R.id.style5));
-        styles.add(rootView.findViewById(R.id.style6));
-        styles.add(rootView.findViewById(R.id.style7));
-        styles.add(rootView.findViewById(R.id.style8));
-        styles.add(rootView.findViewById(R.id.style9));
-        for(int i=0; i<styles.size(); ++i) {
-            for(int j=0; i<checkedStyles.size(); ++i) {
-                if(styles.get(i).getText() == checkedStyles.get(j)){
-                    styles.get(i).setChecked(true);
-                } else {
-                    styles.get(i).setSelected(false);
-                }
+        for(int i=0; i<areas.size(); ++i) {
+            if(areas.get(i).getText().equals(checkedArea)){
+                areas.get(i).setChecked(true);
+                areas.get(i).setSelected(true);
+            } else {
+                areas.get(i).setSelected(false);
+                areas.get(i).setSelected(false);
             }
         }
 
@@ -122,7 +85,7 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
         completeButton.setOnClickListener(this);
 
         //리셋 버튼
-        AppCompatButton resetButton = rootView.findViewById(R.id.resetButton);
+        TextView resetButton = rootView.findViewById(R.id.resetButton);
         resetButton.setOnClickListener(this);
 
         return rootView;
@@ -151,18 +114,12 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
         }
     };
 
+
     @SuppressLint("ResourceType")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.completeButton:
-                if (radioGroupOrder.getCheckedRadioButtonId() > 0) {
-                    View radioButton = radioGroupOrder.findViewById(radioGroupOrder.getCheckedRadioButtonId());
-                    int radioId = radioGroupOrder.indexOfChild(radioButton);
-                    RadioButton btn = (RadioButton) radioGroupOrder.getChildAt(radioId);
-                    checkedOrder = btn.getText().toString();
-                }
-
                 if (radioGroupArea1.getCheckedRadioButtonId() > 0) {
                     View radioButton = radioGroupArea1.findViewById(radioGroupArea1.getCheckedRadioButtonId());
                     int radioId = radioGroupArea1.indexOfChild(radioButton);
@@ -175,26 +132,14 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
                     checkedArea = btn.getText().toString();
                 }
 
-                for(int i=1; i < styles.size(); ++i) {
-                    if(styles.get(i).isChecked()) {
-                        checkedStyles.add(styles.get(i).getText().toString());
-                    }
-                }
-
-                callback.onComplete(checkedOrder, checkedArea, checkedStyles);
+                callback.onComplete(checkedArea);
 
                 dismiss();
 
             case R.id.resetButton:
                 checkedArea = null;
-                checkedOrder = null;
-                checkedStyles.clear();
-                radioGroupOrder.clearCheck();
                 radioGroupArea1.clearCheck();
                 radioGroupArea2.clearCheck();
-                for(int i=1; i<styles.size(); ++i) {
-                    styles.get(i).setChecked(false);
-                }
         }
     }
 
@@ -231,7 +176,7 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
 
     private int getBottomSheetDialogDefaultHeight() {
         //BottomSheetDialog 의 사이즈 조절. 현재는 전체 화면의 85퍼
-        return getWindowHeight() * 95 / 100;
+        return getWindowHeight() * 50 / 100;
     }
 
     private int getWindowHeight() {
@@ -241,9 +186,8 @@ public class MyBottomSheetDialog extends BottomSheetDialogFragment implements Vi
     }
 
 
-
     /** 응답 콜백 */
     public interface onCompleteListener {
-        public void onComplete(String checkedOrder, String checkedArea, ArrayList<String> checkedStyles);
+        public void onComplete(String checkedArea);
     }
 }

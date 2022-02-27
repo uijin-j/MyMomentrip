@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
@@ -26,10 +27,11 @@ public class SearchFragment extends Fragment {
     MainActivity activity;
     SearchRecommendFragment recommendFragment;
 
-    ArrayList<String> selectedCondt = new ArrayList<>();
     TextView textView, textView2, textView3;
 
-
+    private String orderFilter = null;
+    private String areaFilter = null;
+    private ArrayList<String> styleFilter = new ArrayList<>();
 
     //액티비티 참조가 필요하면 사용
     @Override
@@ -58,43 +60,45 @@ public class SearchFragment extends Fragment {
         //필터 버튼 클릭 시 아래에서 위로 올라오는 화면
         AppCompatButton filterButton = (AppCompatButton) rootView.findViewById(R.id.filterButton);
         filterButton.setOnClickListener(v -> {
-            MyBottomSheetDialog bottomSheetDialog = new MyBottomSheetDialog();
-            bottomSheetDialog.show(activity.getSupportFragmentManager(), "myBottomSheetDialog");
-
-            getChildFragmentManager().setFragmentResultListener("requestKey", this, new FragmentResultListener() {
+            MyBottomSheetDialog bottomSheetDialog = new MyBottomSheetDialog(orderFilter, areaFilter, styleFilter, new MyBottomSheetDialog.onCompleteListener() {
                 @Override
-                public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle bundle) {
-                    //String 말고 ArrayList로 변환
+                public void onComplete(String checkedOrder, String checkedArea, ArrayList<String> checkedStyles) {
+                    orderFilter = checkedOrder;
+                    areaFilter = checkedArea;
+                    styleFilter = checkedStyles;
 
-                    selectedCondt = bundle.getStringArrayList("bundleKey");
-                    Log.d("search", selectedCondt.toString());
+                    if(orderFilter!=null) {
+                        textView.setText(orderFilter);
+                        textView.setBackgroundResource(R.drawable.selected_sort);
+                    } else {
+                        textView.setText("정렬");
+                        textView.setBackgroundResource(R.drawable.selected_sort_gray);
+                    }
 
+                    if(areaFilter!=null) {
+                        textView2.setText(areaFilter);
+                        textView2.setBackgroundResource(R.drawable.selected_sort);
+                    } else {
+                        textView2.setText("여행지역");
+                        textView2.setBackgroundResource(R.drawable.selected_sort_gray);
+                    }
 
+                    if(styleFilter.size()!=0) {
+                        textView3.setText("스타일 "+String.valueOf(styleFilter.size()));
+                        textView3.setBackgroundResource(R.drawable.selected_sort);
+                    } else {
+                        textView3.setText("여행스타일");
+                        textView3.setBackgroundResource(R.drawable.selected_sort_gray);
+                    }
                 }
             });
-
-            if (bottomSheetDialog.isDetached()) {
-                //종료될 때만 값을 받아오는게 실행되게 콜백함수를 넣을 수 있을까
-            }
+            bottomSheetDialog.show(activity.getSupportFragmentManager(), "myBottomSheetDialog");
         });
 
-        Log.d("22222222222222", "22222222222222start!!!!!!!!!!!_");
+        textView = rootView.findViewById(R.id.orderFilter);
+        textView2 = rootView.findViewById(R.id.areaFilter);
+        textView3 = rootView.findViewById(R.id.styleFilter);
 
-        textView = rootView.findViewById(R.id.searchFilter);
-        textView2 = rootView.findViewById(R.id.searchFilter2);
-        textView3 = rootView.findViewById(R.id.searchFilter3);
-
-        if (!selectedCondt.isEmpty()) {
-
-            textView.setText(selectedCondt.get(0));
-            textView.setBackgroundResource(R.drawable.selected_sort);
-
-            textView2.setText(selectedCondt.get(1));
-            textView2.setBackgroundResource(R.drawable.selected_sort);
-
-            textView3.setText(selectedCondt.get(2));
-            textView3.setBackgroundResource(R.drawable.selected_sort);
-        }
         return rootView;
     }
 }

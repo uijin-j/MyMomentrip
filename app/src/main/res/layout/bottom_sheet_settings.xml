@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:background="@drawable/bottom_sheet_background_white"
+    android:orientation="vertical"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <View
+        android:layout_width="73dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/round_corner_gray" />
+
+    <LinearLayout
+        android:id="@+id/profile_setting"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="24dp">
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_sample"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="프로필 관리"
+            android:textColor="@color/text1"
+            android:textSize="16sp"
+            android:paddingTop="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/border_bottom"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/category_setting"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_sample"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="카테고리 관리"
+            android:textColor="@color/text1"
+            android:textSize="16sp"
+            android:paddingTop="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/border_bottom"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/autoLogin_setting"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_sample"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="자동 로그인"
+            android:textColor="@color/text1"
+            android:textSize="16sp"
+            android:paddingTop="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/border_bottom"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/delete_account"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_sample"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="회원 탈퇴"
+            android:textColor="@color/text1"
+            android:textSize="16sp"
+            android:paddingTop="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/border_bottom"/>
+    </LinearLayout>
+
+</LinearLayout>

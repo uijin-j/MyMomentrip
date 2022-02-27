@@ -193,13 +193,12 @@
         android:layout_marginTop="10dp"
         android:orientation="vertical">
 
-        <RadioGroup
-            android:id="@+id/radioGroupStyle1"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/style1"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
@@ -208,7 +207,7 @@
                 android:text="힐링"
                 android:textColor="@color/text1" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/style2"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
@@ -218,7 +217,7 @@
                 android:text="액티비티"
                 android:textColor="@color/text1" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/style3"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
@@ -228,7 +227,7 @@
                 android:text="럭셔리"
                 android:textColor="@color/text1" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/style4"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
@@ -237,17 +236,15 @@
                 android:button="@null"
                 android:text="먹방"
                 android:textColor="@color/text1" />
-        </RadioGroup>
+        </LinearLayout>
 
-
-        <RadioGroup
-            android:id="@+id/radioGroupStyle2"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/style5"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
@@ -256,7 +253,7 @@
                 android:text="나홀로여행"
                 android:textColor="@color/text1" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/style6"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
@@ -266,7 +263,7 @@
                 android:text="우정여행"
                 android:textColor="@color/text1" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/style7"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
@@ -275,17 +272,15 @@
                 android:button="@null"
                 android:text="커플여행"
                 android:textColor="@color/text1" />
+        </LinearLayout>
 
-        </RadioGroup>
-
-        <RadioGroup
-            android:id="@+id/radioGroupStyle3"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/style8"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
@@ -294,7 +289,7 @@
                 android:text="당일치기"
                 android:textColor="@color/text1" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/style9"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
@@ -303,8 +298,7 @@
                 android:button="@null"
                 android:text="한달살기"
                 android:textColor="@color/text1" />
-
-        </RadioGroup>
+        </LinearLayout>
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton

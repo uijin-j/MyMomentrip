@@ -5,6 +5,7 @@ import com.uijin.momentrip.data.model.CreateMomentRequest;
 import com.uijin.momentrip.data.model.CreateMomentResponse;
 import com.uijin.momentrip.data.model.GetBookListResponse;
 import com.uijin.momentrip.data.model.GetBookResponse;
+import com.uijin.momentrip.data.model.GetMomentListResponse;
 import com.uijin.momentrip.data.model.LoginRequest;
 import com.uijin.momentrip.data.model.LoginResponse;
 import com.uijin.momentrip.data.model.SignupRequest;
@@ -111,6 +112,19 @@ public class RemoteDataSource { // API를 통해 데이터 소스를 가져오�
         });
     }
 
+    /* GET Book By userId */
+    public void getBooksByUser(String user_id, RemoteDataSource.GetDataCallback<GetBookListResponse> callback) {
+        // 인터페이스 구현
+        service.getBooksByUser(user_id).enqueue(new Callback<GetBookListResponse>() {
+            @Override
+            public void onResponse(Call<GetBookListResponse> call, Response<GetBookListResponse> response) {
+                if (response.isSuccessful()) { callback.onSuccess(response.body()); }
+            }
+            @Override
+            public void onFailure(Call<GetBookListResponse> call, Throwable t) { callback.onFailure(t); }
+        });
+    }
+
     /** Moment */
     /* Post Moment */
     public void createMoment(MultipartBody.Part file , Map<String, RequestBody> request, RemoteDataSource.GetDataCallback<CreateMomentResponse> callback) {
@@ -122,6 +136,18 @@ public class RemoteDataSource { // API를 통해 데이터 소스를 가져오�
             }
             @Override
             public void onFailure(Call<CreateMomentResponse> call, Throwable t) { callback.onFailure(t); }
+        });
+    }
+
+    public  void getMomentsByUser(String user_id, RemoteDataSource.GetDataCallback<GetMomentListResponse> callback) {
+        // 인터페이스 구현
+        service.getMomentsByUser(user_id).enqueue(new Callback<GetMomentListResponse>() {
+            @Override
+            public void onResponse(Call<GetMomentListResponse> call, Response<GetMomentListResponse> response) {
+                if (response.isSuccessful()) { callback.onSuccess(response.body()); }
+            }
+            @Override
+            public void onFailure(Call<GetMomentListResponse> call, Throwable t) { callback.onFailure(t); }
         });
     }
 

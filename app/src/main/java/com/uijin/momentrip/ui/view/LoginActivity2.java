@@ -52,7 +52,7 @@ public class LoginActivity2 extends AppCompatActivity {
                         editor.commit(); // 항상 commit & apply 를 해주어야 저장이 된다.
                         getPreferences(0); // 메소드 호출(mode:0 => 읽기, 쓰기 가능)
 
-                        Toast.makeText(getApplicationContext(),"반가워요, "+data.getUser().getNick()+"님", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"반가워요, "+data.getUser().getName()+"님", Toast.LENGTH_SHORT).show();
                         Toast.makeText(getApplicationContext(),"토큰 : "+ preferences.getString("token", "null"), Toast.LENGTH_SHORT).show();
 
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));

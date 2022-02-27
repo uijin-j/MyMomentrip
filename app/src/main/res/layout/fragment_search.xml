@@ -49,12 +49,13 @@
             app:layout_constraintTop_toTopOf="@+id/searchView" />
 
         <TextView
-            android:id="@+id/searchFilter"
+            android:id="@+id/orderFilter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="15dp"
-            android:text=""
+            android:background="@drawable/selected_sort_gray"
+            android:text="정렬"
             android:textColor="#191919"
             android:textSize="12sp"
             android:textStyle="bold"
@@ -62,31 +63,31 @@
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
         <TextView
-            android:id="@+id/searchFilter2"
+            android:id="@+id/areaFilter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/selected_sort"
-            android:text="제주도"
+            android:background="@drawable/selected_sort_gray"
+            android:text="여행지역"
             android:textColor="#191919"
             android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/searchFilter"
+            app:layout_constraintStart_toEndOf="@+id/orderFilter"
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
         <TextView
-            android:id="@+id/searchFilter3"
+            android:id="@+id/styleFilter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/selected_sort"
-            android:text="나홀로여행"
+            android:background="@drawable/selected_sort_gray"
+            android:text="여행스타일"
             android:textColor="#191919"
             android:textSize="12sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/searchFilter2"
+            app:layout_constraintStart_toEndOf="@+id/areaFilter"
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
         <androidx.appcompat.widget.AppCompatButton
